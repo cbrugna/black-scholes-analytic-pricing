@@ -89,3 +89,21 @@ double put_theta(const double S, const double K, const double r, const double v,
 double put_rho(const double S, const double K, const double r, const double v, const double T) {
   return -T*K*exp(-r*T)*norm_cdf(-d_j(2, S, K, r, v, T));
 }
+
+
+//Monte Carlo 
+
+// Generates guassian random numbers- needed for the Monte Cardlo method
+double gaussian_box_muller() {
+    double x = 0.0;
+    double y = 0.0;
+    double euclid_sq = 0.0;
+
+    do {
+        x = 2.0 * rand() / static_cast<double>(RAND_MAX)-1;
+        y = 2.0 * rand() / static_cast<double>(RAND_MAX)-1;
+        euclid_sq = x*x + y*y;
+    } while (euclid_sq >= 1.0);
+
+    return x*sqrt(-2*log(euclid_sq)/euclid_sq);
+}

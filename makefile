@@ -1,11 +1,10 @@
-TARGET=main
-CFLAGS=-Wall
 
-.PHONY: all clean
+black_scholes: main.o black_scholes.h
+	g++ main.o -o black_scholes
 
-main: $(TARGET)
-
-$(TARGET):
+main.o: main.cpp
+	g++ -c main.cpp
 
 clean:
-	rm -f $(TARGET)
+	rm *.o black_scholes
+	
